@@ -6,6 +6,9 @@
     {{- range .Paginator.Pages }}
     <li class="post-entry">
         <a href="{{ .Permalink }}" class="post-entry-link">
+            {{ with .Resources.GetMatch "*.svg" }}
+            <img src="{{ .RelPermalink }}" alt="Illustrative cover image" title="Illustrative cover image" loading="lazy" class="post-entry-cover">
+            {{ end }}
             <h2 class="post-entry-title">{{ .Title }}</h2>
             {{ partial "post_meta.html" . }} {{- with .Description | default
             .Summary }}

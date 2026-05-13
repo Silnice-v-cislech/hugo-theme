@@ -1,8 +1,11 @@
 {{ define "main" }}
 
 <section class="hero">
-  {{- with site.Params.homeImage }}
-  <img src="{{ strings.TrimLeft "/" . | relURL }}" alt="{{ site.Params.author | default site.Title }}" class="hero-image">
+  {{- with site.Params.homeImageLight }}
+  <img src="{{ strings.TrimLeft "/" . | relURL }}" alt="{{ site.Params.author | default site.Title }}" class="hero-image light">
+  {{- end }}
+  {{- with site.Params.homeImageDark }}
+  <img src="{{ strings.TrimLeft "/" . | relURL }}" alt="{{ site.Params.author | default site.Title }}" class="hero-image dark">
   {{- end }}
   <h1 class="hero-name">{{ site.Params.homeTitle | default site.Title }}</h1>
   {{- with site.Params.homeSubtitle }}
@@ -11,15 +14,16 @@
   {{- with site.Params.homeBio }}
   <p class="hero-bio">{{ . | markdownify }}</p>
   {{- end }}
-  {{- with site.Params.socialLinks }}
-  <nav class="hero-links" aria-label="Social links">
-    {{- range . }}
-    <a href="{{ .url }}" {{ if .external }}target="_blank" rel="noopener noreferrer"{{ end }} title="{{ .name }}">{{ .name }}</a>
-    {{- end }}
-  </nav>
-  {{- end }}
 
-  {{ partial "ask-ai.html" . }}
+  <div class="hero-links">
+    <ul class="terms-list">
+      {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
+        <li>
+          <a href="/categories/{{ $name | urlize }}/">{{ $name }} <span class="terms-count">({{ len $taxonomy }})</span></a>
+        </li>
+      {{ end }}
+    </ul>
+  </div>
 </section>
 
 {{- $recentCount := site.Params.recentPostsCount | default 3 }}
@@ -34,6 +38,9 @@
     {{- range . }}
     <li class="post-entry">
       <a href="{{ .Permalink }}" class="post-entry-link">
+        {{ with .Resources.GetMatch "*.svg" }}
+          <img src="{{ .RelPermalink }}" alt="Illustrative cover image" title="Illustrative cover image" loading="lazy" class="post-entry-cover">
+        {{ end }}
         <h3 class="post-entry-title">{{ .Title }}</h3>
         {{ partial "post_meta.html" . }}
         {{- with .Description | default .Summary }}

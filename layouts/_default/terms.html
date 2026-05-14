@@ -1,6 +1,6 @@
 {{ define "main" }}
 
-<h1 class="page-title">{{ .Title }}</h1>
+<h1 class="page-title">{{ i18n .Data.Singular | default .Title }}</h1>
 
 <ul class="terms-list">
   {{- range .Pages }}

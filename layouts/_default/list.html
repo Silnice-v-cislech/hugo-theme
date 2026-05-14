@@ -1,4 +1,4 @@
-{{ define "main" }} {{- if not .IsHome }}
+{{ define "main" }} {{- if and (not .IsHome) (eq .Kind "term") }}
 <h1 class="page-title">{{ .Title }}</h1>
 {{- end }}
 

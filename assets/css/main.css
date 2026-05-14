@@ -383,7 +383,8 @@ hr {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: .75rem
+    gap: .75rem;
+    margin-top: 1.5rem;
 }
 
 .post-entry {

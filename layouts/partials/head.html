@@ -171,6 +171,5 @@
 {{- end }}
 
 {{/* Favicon */}}
-{{- with site.Params.favicon }}
-<link rel="icon" href="{{ . }}">
-{{- end }}
+<link rel="icon" type="image/svg+xml" href="{{ .Site.BaseURL }}favicon.svg">
+<link rel="alternate icon" href="{{ .Site.BaseURL }}favicon.ico">

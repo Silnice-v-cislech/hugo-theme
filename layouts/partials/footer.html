@@ -1,4 +1,5 @@
 <footer class="footer">
+    <div class="container">Máte otázku, kterou chcete zodpovědět v datech? silnicevcislech@proton.me</div>
     <div class="container">&copy; {{ now.Year }} {{ site.Title }}</div>
 </footer>
 
@@ -97,32 +98,6 @@
                 );
             }
         }
-
-        // Ask AI buttons
-        document.querySelectorAll(".ask-ai-btn").forEach(function (btn) {
-            btn.addEventListener("click", function () {
-                var prompt = document
-                    .getElementById("ask-ai-prompt")
-                    .textContent.trim();
-                var url = btn.dataset.url;
-                var name = btn.dataset.name;
-                if (url.indexOf("PROMPT") > -1) {
-                    window.open(
-                        url.replace("PROMPT", encodeURIComponent(prompt)),
-                        "_blank",
-                    );
-                } else {
-                    navigator.clipboard.writeText(prompt).then(function () {
-                        btn.textContent = i18n.copied || "Copied!";
-                        setTimeout(function () {
-                            btn.textContent = name;
-                        }, 2000);
-                    }).catch(function () {}).finally(function () {
-                        window.open(url, "_blank", "noopener");
-                    });
-                }
-            });
-        });
 
         // Code copy buttons
         var copyLabel = i18n.copy || "copy";

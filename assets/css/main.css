@@ -1316,7 +1316,13 @@ th {
     --pico-color: var(--text);
     --pico-form-element-color: var(--tag-text);
     --pico-form-element-background-color: var(--tag-bg);
-    --pico-form-element-border-color: var(--border)
+    --pico-form-element-border-color: var(--border);
+    --pico-switch-background-color: var(--tag-bg);
+    --pico-switch-checked-background-color: var(--accent);
+    --pico-switch-color: var(--tag-text);
+    --pico-switch-thumb-box-shadow: var(--border);
+    --pico-tooltip-background-color: var(--tag-bg);
+    --pico-tooltip-color: var(--tag-text);
 }
 
 @media(min-width:576px) {
@@ -1713,12 +1719,13 @@ label:has([type=checkbox], [type=radio]) {
 [type=checkbox][role=switch] {
     --pico-background-color: var(--pico-switch-background-color);
     --pico-color: var(--pico-switch-color);
-    width: 2.25em;
-    height: 1.25em;
-    border: var(--pico-border-width)solid var(--pico-border-color);
-    border-radius: 1.25em;
+    width: 3.6em;
+    height: 2em;
+    border: var(--pico-border-width)solid var(--pico-form-element-border-color);
+    border-radius: 2em;
     background-color: var(--pico-background-color);
-    line-height: 1.25em
+    line-height: 2em;
+    margin-top: 0.25em;
 }
 
 [type=checkbox][role=switch]:not([aria-invalid]) {
@@ -1748,7 +1755,7 @@ label:has([type=checkbox], [type=radio]) {
 }
 
 [type=checkbox][role=switch]:checked::before {
-    margin-inline-start: calc(2.25em - 1.25em)
+    margin-inline-start: calc(3.6em - 2em)
 }
 
 [type=checkbox][role=switch][disabled] {
@@ -2224,6 +2231,14 @@ input:not([type=checkbox], [type=radio], [type=range], [type=file])[type=time] {
     fill: var(--text)
 }
 
+.chart-box .chart .chart-line {
+    stroke: var(--text)
+}
+
 .chart-box a[target=_blank]::after {
     content: ' ↗️'
+}
+
+.chart-box.loading {
+    opacity: .2
 }

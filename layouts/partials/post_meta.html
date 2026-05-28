@@ -7,7 +7,7 @@
   {{- $readingTime = math.Ceil $readingTime -}}
   {{- if gt $readingTime 0 }}
   <span>
-    {{- if eq $readingTime 1 -}}
+    {{- if le $readingTime 1 -}}
       {{ T "min_read_one" }}
     {{- else if and (ge $readingTime 2) (le $readingTime 4) -}}
       {{ T "min_read_few" (dict "Count" $readingTime) }}

@@ -27,7 +27,7 @@
 </section>
 
 {{- $recentCount := site.Params.recentPostsCount | default 3 }}
-{{- $posts := where site.RegularPages "Section" "posts" }}
+{{- $posts := where site.RegularPages "Section" "in" .Site.MainSections}}
 {{- with $posts | first $recentCount }}
 <section class="recent-posts">
   <div class="recent-header">
